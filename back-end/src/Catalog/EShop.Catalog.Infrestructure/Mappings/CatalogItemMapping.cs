@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace EShop.Catalog.Infrestructure.Mappings;
 
-public class CatalogItemMapping : IEntityTypeConfiguration<CatalogItem>
+public class CatalogItemMapping : IEntityTypeConfiguration<ProductCatalog>
 {
-    public void Configure(EntityTypeBuilder<CatalogItem> builder)
+    public void Configure(EntityTypeBuilder<ProductCatalog> builder)
     {
         builder.HasKey(x => x.Id);
 

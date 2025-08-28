@@ -2,15 +2,15 @@
 
 namespace EShop.Catalog.Domain.Models;
 
-public class CatalogItem
+public class ProductCatalog
 {
-    public CatalogItem()
+    public ProductCatalog()
     {
-        
+
     }
-    public CatalogItem(int id, string name, string description, decimal price, string pictureFileName, string pictureUri, int catalogTypeId, int catalogBrandId, int availableStock, int restockThreshold, int maxStockThreshold)
+    public ProductCatalog(string name, string description, decimal price, string pictureFileName, string pictureUri, int catalogTypeId, int catalogBrandId, int availableStock, int restockThreshold, int maxStockThreshold)
     {
-        Id = id;
+        Id = Guid.NewGuid();
         Name = name;
         Description = description;
         Price = price;
@@ -23,7 +23,7 @@ public class CatalogItem
         MaxStockThreshold = maxStockThreshold;
     }
 
-    public int Id { get; private set; }
+    public Guid Id { get; private set; }
     public string Name { get; private set; } = string.Empty;
     public string Description { get; private set; } = string.Empty;
     public decimal Price { get; private set; }
@@ -32,7 +32,7 @@ public class CatalogItem
     public int CatalogTypeId { get; private set; }
     public CatalogType CatalogType { get; private set; }
     public int CatalogBrandId { get; private set; }
-    public CatalogBrand CatalogBrand { get; private set; } = new();
+    public ProductCatalogBrand CatalogBrand { get; private set; } = new();
     public int AvailableStock { get; private set; }
     public int RestockThreshold { get; private set; }
     public int MaxStockThreshold { get; private set; }

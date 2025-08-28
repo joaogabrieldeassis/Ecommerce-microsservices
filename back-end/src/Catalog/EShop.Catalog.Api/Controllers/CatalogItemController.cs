@@ -1,6 +1,4 @@
-using EShop.Catalog.Infrestructure.Context;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace EShop.Catalog.Api.Controllers;
 

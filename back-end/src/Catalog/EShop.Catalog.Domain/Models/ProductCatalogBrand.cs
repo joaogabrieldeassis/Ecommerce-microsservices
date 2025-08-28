@@ -1,13 +1,13 @@
 ﻿namespace EShop.Catalog.Domain.Models;
 
-public class CatalogBrand
+public class ProductCatalogBrand
 {
-    public CatalogBrand(Guid id, string brand)
+    public ProductCatalogBrand(Guid id, string brand)
     {
         Id = id;
         Brand = brand;
     }
-    public CatalogBrand() { }
+    public ProductCatalogBrand() { }
 
     public Guid Id { get; private set; }
     public string Brand { get; private set; } = string.Empty;
