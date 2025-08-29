@@ -2,9 +2,9 @@
 
 public class ProductCatalogBrand
 {
-    public ProductCatalogBrand(Guid id, string brand)
+    public ProductCatalogBrand(string brand)
     {
-        Id = id;
+        Id = Guid.NewGuid();
         Brand = brand;
     }
     public ProductCatalogBrand() { }

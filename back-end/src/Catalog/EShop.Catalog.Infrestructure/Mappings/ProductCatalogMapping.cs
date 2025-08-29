@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace EShop.Catalog.Infrestructure.Mappings;
 
-public class CatalogBrandMapping : IEntityTypeConfiguration<ProductCatalogBrand>
+public class ProductCatalogMapping : IEntityTypeConfiguration<ProductCatalog>
 {
-    public void Configure(EntityTypeBuilder<ProductCatalogBrand> builder)
+    public void Configure(EntityTypeBuilder<ProductCatalog> builder)
     {
         builder.HasKey(x => x.Id);
 
-        builder.ToTable("CatalogBrands");
+        builder.ToTable("CatalogItens");
     }
 }

@@ -9,20 +9,25 @@ public class CatalogRepository(CatalogContext context) : ICatalogRepository
 {
     private readonly CatalogContext _context = context;
 
+    public async Task<IEnumerable<ProductCatalog>> GetAllAsync()
+    {
+        return await _context.CatalogItems.AsNoTracking().Include(x => x.ProductCatalogBrand).ToListAsync();
+    }
+
+    public async Task<ProductCatalog?> GetByIdAsync(Guid id)
+    {
+        return await _context.CatalogItems.Include(x => x.ProductCatalogBrand).FirstOrDefaultAsync(x => x.Id == id);
+    }
+
     public async Task<bool> AddAsync(ProductCatalog entity)
     {
         await _context.CatalogItems.AddAsync(entity);
         return await SaveChangesAsync();
     }
 
-    public async Task<IEnumerable<ProductCatalog>> GetAllAsync()
+    public async Task UpdateAsync()
     {
-        return await _context.CatalogItems.Include(x => x.CatalogBrand).ToListAsync();
-    }
-
-    public async Task<ProductCatalog?> GetByIdAsync(Guid id)
-    {
-        return await _context.CatalogItems.Include(x => x.CatalogBrand).FirstOrDefaultAsync(x => x.Id == id);
+        await SaveChangesAsync();
     }
 
     private async Task<bool> SaveChangesAsync()

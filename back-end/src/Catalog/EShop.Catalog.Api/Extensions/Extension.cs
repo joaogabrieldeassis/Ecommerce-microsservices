@@ -1,4 +1,6 @@
-﻿using EShop.Catalog.Infrestructure.Context;
+﻿using EShop.Catalog.Domain.Interfaces;
+using EShop.Catalog.Infrestructure.Context;
+using EShop.Catalog.Infrestructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using System.Buffers.Text;
@@ -18,13 +20,12 @@ public static class Extension
     {
         builder.Services.AddDbContext<CatalogContext>(options =>
         {
-            options.UseSqlServer(builder.Configuration["ConnectionString"],
-            sqlServerOptionsAction: sqlOptions =>
-            {
-                sqlOptions.MigrationsAssembly(typeof(Program).GetTypeInfo().Assembly.GetName().Name);
-
-                sqlOptions.EnableRetryOnFailure(maxRetryCount: 5, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
-            });
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionSql"));
         });
+    }
+
+    private static void AddDependeciInjection(this WebApplicationBuilder builder) 
+    {
+        builder.Services.AddScoped<ICatalogRepository, CatalogRepository>();
     }
 }

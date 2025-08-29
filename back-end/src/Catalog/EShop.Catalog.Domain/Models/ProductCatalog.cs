@@ -8,7 +8,16 @@ public class ProductCatalog
     {
 
     }
-    public ProductCatalog(string name, string description, decimal price, string pictureFileName, string pictureUri, int catalogTypeId, int catalogBrandId, int availableStock, int restockThreshold, int maxStockThreshold)
+    public ProductCatalog(string name,
+                          string description,
+                          decimal price,
+                          string pictureFileName,
+                          string pictureUri,
+                          int catalogTypeId,
+                          int availableStock,
+                          int restockThreshold,
+                          int maxStockThreshold,
+                          ProductCatalogBrand productCatalogBrand)
     {
         Id = Guid.NewGuid();
         Name = name;
@@ -17,7 +26,7 @@ public class ProductCatalog
         PictureFileName = pictureFileName;
         PictureUri = pictureUri;
         CatalogTypeId = catalogTypeId;
-        CatalogBrandId = catalogBrandId;
+        ProductCatalogBrand = productCatalogBrand;
         AvailableStock = availableStock;
         RestockThreshold = restockThreshold;
         MaxStockThreshold = maxStockThreshold;
@@ -31,10 +40,28 @@ public class ProductCatalog
     public string PictureUri { get; private set; } = string.Empty;
     public int CatalogTypeId { get; private set; }
     public CatalogType CatalogType { get; private set; }
-    public int CatalogBrandId { get; private set; }
-    public ProductCatalogBrand CatalogBrand { get; private set; } = new();
+    public Guid CatalogBrandId { get; private set; }
+    public ProductCatalogBrand ProductCatalogBrand { get; private set; } = new();
     public int AvailableStock { get; private set; }
     public int RestockThreshold { get; private set; }
     public int MaxStockThreshold { get; private set; }
     public bool OnReorder { get; private set; }
+
+    public void Update(string name, string description, decimal price, string pictureFileName, string pictureUri,
+                       int catalogTypeId, CatalogType catalogType, Guid catalogBrandId,  int availableStock,
+                       int restockThreshold, int maxStockThreshold, bool onReorder)
+    {
+        Name = name;
+        Description = description;
+        Price = price;
+        PictureFileName = pictureFileName;
+        PictureUri = pictureUri;
+        CatalogTypeId = catalogTypeId;
+        CatalogType = catalogType;
+        CatalogBrandId = catalogBrandId;
+        AvailableStock = availableStock;
+        RestockThreshold = restockThreshold;
+        MaxStockThreshold = maxStockThreshold;
+        OnReorder = onReorder;
+    }
 }

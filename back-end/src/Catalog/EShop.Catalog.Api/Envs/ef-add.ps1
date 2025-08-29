@@ -1,0 +1,1 @@
+dotnet ef migrations add InitialCreate --project C:\StudySpace\eShop-microsservices\back-end\src\Catalog\EShop.Catalog.Infrestructure\EShop.Catalog.Infrestructure.csproj -s C:\StudySpace\eShop-microsservices\back-end\src\Catalog\EShop.Catalog.Api\EShop.Catalog.Api.csproj  --verbose
