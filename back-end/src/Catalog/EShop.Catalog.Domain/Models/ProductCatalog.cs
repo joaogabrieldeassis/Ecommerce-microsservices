@@ -17,7 +17,7 @@ public class ProductCatalog
                           int availableStock,
                           int restockThreshold,
                           int maxStockThreshold,
-                          ProductCatalogBrand productCatalogBrand)
+                          Guid catalogBrandId)
     {
         Id = Guid.NewGuid();
         Name = name;
@@ -26,10 +26,10 @@ public class ProductCatalog
         PictureFileName = pictureFileName;
         PictureUri = pictureUri;
         CatalogTypeId = catalogTypeId;
-        ProductCatalogBrand = productCatalogBrand;
         AvailableStock = availableStock;
         RestockThreshold = restockThreshold;
         MaxStockThreshold = maxStockThreshold;
+        CatalogBrandId = catalogBrandId;
     }
 
     public Guid Id { get; private set; }

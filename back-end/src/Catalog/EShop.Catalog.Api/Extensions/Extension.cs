@@ -14,6 +14,7 @@ public static class Extension
     public static void AddModules(this WebApplicationBuilder builder)
     {
         builder.AddDbContext();
+        builder.AddDependeciInjection();
     }
 
     private static void AddDbContext(this WebApplicationBuilder builder)
