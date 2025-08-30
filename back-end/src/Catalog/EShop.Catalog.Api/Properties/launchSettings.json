@@ -7,7 +7,10 @@
       "launchBrowser": false,
       "applicationUrl": "http://localhost:5284",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DbServer": "localhost",
+        "DbPort": "1433",
+        "Password": "1q2w3e4r@#$"
       }
     },
     "https": {
@@ -16,7 +19,10 @@
       "launchBrowser": false,
       "applicationUrl": "https://localhost:7135;http://localhost:5284",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DbServer": "localhost",
+        "DbPort": "1433",
+        "Password": "1q2w3e4r@#$"
       }
     }
   }

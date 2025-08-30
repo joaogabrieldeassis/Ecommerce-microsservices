@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EShop.Catalog.Infrestructure.Migrations
 {
     [DbContext(typeof(CatalogContext))]
-    [Migration("20250829154008_InitialCreate")]
+    [Migration("20250830190828_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -37,12 +37,6 @@ namespace EShop.Catalog.Infrestructure.Migrations
                     b.Property<Guid>("CatalogBrandId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("CatalogType")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CatalogTypeId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -54,9 +48,6 @@ namespace EShop.Catalog.Infrestructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("OnReorder")
-                        .HasColumnType("bit");
-
                     b.Property<string>("PictureFileName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -66,7 +57,8 @@ namespace EShop.Catalog.Infrestructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(28, 2)
+                        .HasColumnType("decimal(28,2)");
 
                     b.Property<Guid>("ProductCatalogBrandId")
                         .HasColumnType("uniqueidentifier");

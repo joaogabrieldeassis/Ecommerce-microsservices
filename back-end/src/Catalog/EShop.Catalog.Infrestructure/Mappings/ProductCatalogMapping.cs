@@ -9,6 +9,8 @@ public class ProductCatalogMapping : IEntityTypeConfiguration<ProductCatalog>
     public void Configure(EntityTypeBuilder<ProductCatalog> builder)
     {
         builder.HasKey(x => x.Id);
+        builder.Property(x => x.Price)
+               .HasPrecision(28, 2);
 
         builder.ToTable("CatalogItens");
     }

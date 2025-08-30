@@ -32,17 +32,14 @@ namespace EShop.Catalog.Infrestructure.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(28,2)", precision: 28, scale: 2, nullable: false),
                     PictureFileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PictureUri = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CatalogTypeId = table.Column<int>(type: "int", nullable: false),
-                    CatalogType = table.Column<int>(type: "int", nullable: false),
                     CatalogBrandId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ProductCatalogBrandId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     AvailableStock = table.Column<int>(type: "int", nullable: false),
                     RestockThreshold = table.Column<int>(type: "int", nullable: false),
-                    MaxStockThreshold = table.Column<int>(type: "int", nullable: false),
-                    OnReorder = table.Column<bool>(type: "bit", nullable: false)
+                    MaxStockThreshold = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

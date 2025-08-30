@@ -3,17 +3,18 @@ using EShop.Catalog.Api.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
-builder.AddModules();  
-builder.Services.AddOpenApi();
+builder.AddModules();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+Extension.ApplyMigrations(app);
+
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
-
-app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

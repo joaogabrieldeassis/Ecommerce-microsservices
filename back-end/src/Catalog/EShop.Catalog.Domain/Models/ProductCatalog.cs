@@ -1,6 +1,4 @@
-﻿using EShop.Catalog.Domain.Models.Enuns;
-
-namespace EShop.Catalog.Domain.Models;
+﻿namespace EShop.Catalog.Domain.Models;
 
 public class ProductCatalog
 {
@@ -13,7 +11,6 @@ public class ProductCatalog
                           decimal price,
                           string pictureFileName,
                           string pictureUri,
-                          int catalogTypeId,
                           int availableStock,
                           int restockThreshold,
                           int maxStockThreshold,
@@ -25,7 +22,6 @@ public class ProductCatalog
         Price = price;
         PictureFileName = pictureFileName;
         PictureUri = pictureUri;
-        CatalogTypeId = catalogTypeId;
         AvailableStock = availableStock;
         RestockThreshold = restockThreshold;
         MaxStockThreshold = maxStockThreshold;
@@ -38,30 +34,23 @@ public class ProductCatalog
     public decimal Price { get; private set; }
     public string PictureFileName { get; private set; } = string.Empty;
     public string PictureUri { get; private set; } = string.Empty;
-    public int CatalogTypeId { get; private set; }
-    public CatalogType CatalogType { get; private set; }
     public Guid CatalogBrandId { get; private set; }
     public ProductCatalogBrand ProductCatalogBrand { get; private set; } = new();
     public int AvailableStock { get; private set; }
     public int RestockThreshold { get; private set; }
     public int MaxStockThreshold { get; private set; }
-    public bool OnReorder { get; private set; }
 
     public void Update(string name, string description, decimal price, string pictureFileName, string pictureUri,
-                       int catalogTypeId, CatalogType catalogType, Guid catalogBrandId,  int availableStock,
-                       int restockThreshold, int maxStockThreshold, bool onReorder)
+                       Guid catalogBrandId,  int availableStock, int restockThreshold, int maxStockThreshold)
     {
         Name = name;
         Description = description;
         Price = price;
         PictureFileName = pictureFileName;
         PictureUri = pictureUri;
-        CatalogTypeId = catalogTypeId;
-        CatalogType = catalogType;
         CatalogBrandId = catalogBrandId;
         AvailableStock = availableStock;
         RestockThreshold = restockThreshold;
         MaxStockThreshold = maxStockThreshold;
-        OnReorder = onReorder;
     }
 }

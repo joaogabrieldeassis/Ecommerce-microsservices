@@ -30,10 +30,15 @@ public class CatalogRepository(CatalogContext context) : ICatalogRepository
         await SaveChangesAsync();
     }
 
+    public async Task<IEnumerable<ProductCatalogBrand>> GetAllProductsCatalogBranchAsync()
+    {
+        return await _context.CatalogBrands.AsNoTracking().ToListAsync();
+    }
+
     private async Task<bool> SaveChangesAsync()
     {
         var result = await _context.SaveChangesAsync();
 
         return result > 0;
-    }
+    }    
 }

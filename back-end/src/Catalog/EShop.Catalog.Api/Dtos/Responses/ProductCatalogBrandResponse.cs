@@ -1,11 +1,11 @@
 ﻿using EShop.Catalog.Domain.Models;
 
-namespace EShop.Catalog.Api.Dtos;
+namespace EShop.Catalog.Api.Dtos.Responses;
 
-public class ProductCatalogBrandDto
+public class ProductCatalogBrandResponse
 {
-    public ProductCatalogBrandDto()   { }
-    public ProductCatalogBrandDto(string brand)
+    public ProductCatalogBrandResponse()   { }
+    public ProductCatalogBrandResponse(string brand)
     {
         Id = Guid.NewGuid();
         Brand = brand;
@@ -15,7 +15,7 @@ public class ProductCatalogBrandDto
     public string Brand { get; set; } = string.Empty;
 
 
-    public static implicit operator ProductCatalogBrandDto(ProductCatalogBrand productCatalogBrand)
+    public static implicit operator ProductCatalogBrandResponse(ProductCatalogBrand productCatalogBrand)
     {
         return new()
         {

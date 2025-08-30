@@ -1,0 +1,33 @@
+version: "3.4"
+
+services:
+  catalog-api:
+    build: back-end/src/catalog
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DbServer=mssql-server
+      - DbPort=1433
+      - Password=1q2w3e4r@#$
+    expose:
+      - "80"
+    ports:
+      - "7135:80"
+    depends_on:
+      - mssql-server
+
+  gateway-api:
+    build: back-end/src/gateway
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "5005:80"
+    depends_on:
+      - catalog-api
+
+  mssql-server:
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      - MSSQL_SA_PASSWORD=1q2w3e4r@#$
+      - ACCEPT_EULA=Y
+    ports:
+      - "1433:1433"
