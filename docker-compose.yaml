@@ -2,10 +2,14 @@ version: "3.4"
 
 services:
   catalog-api:
-    build: back-end/src/catalog
+    build:
+      context: back-end/src/catalog
+      dockerfile: Dockerfile
+    container_name: catalog-container
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - DbServer=mssql-server
+      - ASPNETCORE_URLS=http://+:80
+      - DbServer=sqlserver
       - DbPort=1433
       - Password=1q2w3e4r@#$
     expose:
@@ -13,21 +17,26 @@ services:
     ports:
       - "7135:80"
     depends_on:
-      - mssql-server
+      - sqlserver
 
   gateway-api:
-    build: back-end/src/gateway
+    build:
+      context: back-end/src/gateway
+      dockerfile: Dockerfile
+    container_name: gateway-container
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
     ports:
       - "5005:80"
     depends_on:
       - catalog-api
 
-  mssql-server:
+  sqlserver:
     image: mcr.microsoft.com/mssql/server
     environment:
-      - MSSQL_SA_PASSWORD=1q2w3e4r@#$
-      - ACCEPT_EULA=Y
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "1q2w3e4r@#$"
+      MSSQL_PID: developer
     ports:
       - "1433:1433"
