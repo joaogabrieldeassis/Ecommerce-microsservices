@@ -36,7 +36,6 @@ namespace EShop.Catalog.Infrestructure.Migrations
                     PictureFileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PictureUri = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CatalogBrandId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ProductCatalogBrandId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     AvailableStock = table.Column<int>(type: "int", nullable: false),
                     RestockThreshold = table.Column<int>(type: "int", nullable: false),
                     MaxStockThreshold = table.Column<int>(type: "int", nullable: false)
@@ -45,8 +44,8 @@ namespace EShop.Catalog.Infrestructure.Migrations
                 {
                     table.PrimaryKey("PK_CatalogItens", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CatalogItens_CatalogBrands_ProductCatalogBrandId",
-                        column: x => x.ProductCatalogBrandId,
+                        name: "FK_CatalogItens_CatalogBrands_CatalogBrandId",
+                        column: x => x.CatalogBrandId,
                         principalTable: "CatalogBrands",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -63,9 +62,9 @@ namespace EShop.Catalog.Infrestructure.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CatalogItens_ProductCatalogBrandId",
+                name: "IX_CatalogItens_CatalogBrandId",
                 table: "CatalogItens",
-                column: "ProductCatalogBrandId");
+                column: "CatalogBrandId");
         }
 
         /// <inheritdoc />

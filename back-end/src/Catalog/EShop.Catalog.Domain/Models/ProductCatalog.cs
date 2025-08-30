@@ -35,7 +35,7 @@ public class ProductCatalog
     public string PictureFileName { get; private set; } = string.Empty;
     public string PictureUri { get; private set; } = string.Empty;
     public Guid CatalogBrandId { get; private set; }
-    public ProductCatalogBrand ProductCatalogBrand { get; private set; } = new();
+    public ProductCatalogBrand? ProductCatalogBrand { get; private set; }
     public int AvailableStock { get; private set; }
     public int RestockThreshold { get; private set; }
     public int MaxStockThreshold { get; private set; }

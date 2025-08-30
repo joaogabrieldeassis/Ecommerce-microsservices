@@ -34,8 +34,7 @@ public class CatalogController(ICatalogRepository catalogRepository) : Controlle
         var productsBranchs = await _catalogRepository.GetAllProductsCatalogBranchAsync();
 
         return Ok(productsBranchs.Select(x => (ProductCatalogBrandResponse?)x).ToList());
-    }
-    
+    }    
 
     [HttpPost]
     public async Task<IActionResult> PostAsync(ProductCatalogRequest productCatalogDto)
@@ -78,4 +77,3 @@ public class CatalogController(ICatalogRepository catalogRepository) : Controlle
         return Ok(productCatalog);
     }
 }
-

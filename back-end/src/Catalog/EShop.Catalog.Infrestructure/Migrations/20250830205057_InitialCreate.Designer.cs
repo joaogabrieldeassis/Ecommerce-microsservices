@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EShop.Catalog.Infrestructure.Migrations
 {
     [DbContext(typeof(CatalogContext))]
-    [Migration("20250830190828_InitialCreate")]
+    [Migration("20250830205057_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -60,15 +60,12 @@ namespace EShop.Catalog.Infrestructure.Migrations
                         .HasPrecision(28, 2)
                         .HasColumnType("decimal(28,2)");
 
-                    b.Property<Guid>("ProductCatalogBrandId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<int>("RestockThreshold")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductCatalogBrandId");
+                    b.HasIndex("CatalogBrandId");
 
                     b.ToTable("CatalogItens", (string)null);
                 });
@@ -109,7 +106,7 @@ namespace EShop.Catalog.Infrestructure.Migrations
                 {
                     b.HasOne("EShop.Catalog.Domain.Models.ProductCatalogBrand", "ProductCatalogBrand")
                         .WithMany()
-                        .HasForeignKey("ProductCatalogBrandId")
+                        .HasForeignKey("CatalogBrandId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
