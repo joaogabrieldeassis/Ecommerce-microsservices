@@ -22,7 +22,15 @@ public static class Extension
         var connectionString = $"Server={server},{port};Database=Catalog;User Id=sa;Password={password};TrustServerCertificate=True;";
         builder.Services.AddDbContext<CatalogContext>(options =>
         {
-            options.UseSqlServer(connectionString);
+            options.UseSqlServer(connectionString,
+            sqlServerOptionsAction: sqlOptions =>
+            {
+                sqlOptions.EnableRetryOnFailure(
+                    maxRetryCount: 10,
+                    maxRetryDelay: TimeSpan.FromSeconds(30),
+                    errorNumbersToAdd: null
+                    );
+            });
         });
     }
 
