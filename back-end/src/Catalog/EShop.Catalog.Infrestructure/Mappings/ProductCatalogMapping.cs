@@ -12,10 +12,6 @@ public class ProductCatalogMapping : IEntityTypeConfiguration<ProductCatalog>
         builder.Property(x => x.Price)
                .HasPrecision(28, 2);
 
-        builder.HasOne(builder => builder.ProductCatalogBrand)
-               .WithMany()
-               .HasForeignKey(builder => builder.CatalogBrandId);
-
         builder.ToTable("CatalogItens");
     }
 }

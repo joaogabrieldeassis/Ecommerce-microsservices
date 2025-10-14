@@ -9,12 +9,6 @@ public class ProductCatalogResponse
     public string Description { get; init; } = string.Empty;
     public decimal Price { get; init; }
     public string PictureUri { get; init; } = string.Empty;
-    public Guid CatalogBrandId { get; set; }
-    public ProductCatalogBrandResponse ProductCatalogBrand { get; init; } = new();
-    public int AvailableStock { get; init; }
-    public int RestockThreshold { get; init; }
-    public int MaxStockThreshold { get; init; }
-
 
     public static implicit operator ProductCatalogResponse?(ProductCatalog? productCatalog)
     {
@@ -26,12 +20,7 @@ public class ProductCatalogResponse
             Name = productCatalog.Name,
             Description = productCatalog.Description,
             Price = productCatalog.Price,
-            PictureUri = productCatalog.PictureUri,
-            ProductCatalogBrand = productCatalog.ProductCatalogBrand,
-            AvailableStock = productCatalog.AvailableStock,
-            RestockThreshold = productCatalog.RestockThreshold,
-            MaxStockThreshold = productCatalog.MaxStockThreshold
+            PictureUri = productCatalog.PictureUri
         };
     }
-
 }

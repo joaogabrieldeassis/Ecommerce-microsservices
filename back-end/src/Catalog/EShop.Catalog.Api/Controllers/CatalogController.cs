@@ -28,27 +28,13 @@ public class CatalogController(ICatalogRepository catalogRepository) : Controlle
         return Ok((ProductCatalogResponse?)productCatalog);
     }
 
-    [HttpGet("products-branch")]
-    public async Task<IActionResult> GetAllProductsCatalogBranchAsync()
-    {
-        var productsBranchs = await _catalogRepository.GetAllProductsCatalogBranchAsync();
-
-        return Ok(productsBranchs.Select(x => (ProductCatalogBrandResponse?)x).ToList());
-    }    
-
     [HttpPost]
     public async Task<IActionResult> PostAsync(ProductCatalogRequest productCatalogDto)
     {
-        var productCatalog = new ProductCatalog(
-            productCatalogDto.Name,
-            productCatalogDto.Description,
-            productCatalogDto.Price,
-            productCatalogDto.PictureFileName,
-            productCatalogDto.PictureUri,
-            productCatalogDto.AvailableStock,
-            productCatalogDto.RestockThreshold,
-            productCatalogDto.MaxStockThreshold,
-            productCatalogDto.CatalogBrandId);
+        var productCatalog = new ProductCatalog(productCatalogDto.Name,
+                                                productCatalogDto.Description,
+                                                productCatalogDto.Price,
+                                                productCatalogDto.PictureUri);
 
         await _catalogRepository.AddAsync(productCatalog);
 
@@ -60,17 +46,10 @@ public class CatalogController(ICatalogRepository catalogRepository) : Controlle
     {
         var productCatalog = await _catalogRepository.GetByIdAsync(id);
 
-        productCatalog?.Update(
-            productCatalogDto.Name,
-            productCatalogDto.Description,
-            productCatalogDto.Price,
-            productCatalogDto.PictureFileName,
-            productCatalogDto.PictureUri,
-            productCatalogDto.CatalogBrandId,
-            productCatalogDto.AvailableStock,
-            productCatalogDto.RestockThreshold,
-            productCatalogDto.MaxStockThreshold
-        );
+        productCatalog?.Update(productCatalogDto.Name,
+                               productCatalogDto.Description,
+                               productCatalogDto.Price,
+                               productCatalogDto.PictureUri);
 
         await _catalogRepository.UpdateAsync();
 

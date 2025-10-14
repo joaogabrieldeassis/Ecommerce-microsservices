@@ -11,12 +11,12 @@ public class CatalogRepository(CatalogContext context) : ICatalogRepository
 
     public async Task<IEnumerable<ProductCatalog>> GetAllAsync()
     {
-        return await _context.CatalogItems.AsNoTracking().Include(x => x.ProductCatalogBrand).ToListAsync();
+        return await _context.CatalogItems.AsNoTracking().ToListAsync();
     }
 
     public async Task<ProductCatalog?> GetByIdAsync(Guid id)
     {
-        return await _context.CatalogItems.Include(x => x.ProductCatalogBrand).FirstOrDefaultAsync(x => x.Id == id);
+        return await _context.CatalogItems.FirstOrDefaultAsync(x => x.Id == id);
     }
 
     public async Task<bool> AddAsync(ProductCatalog entity)
@@ -28,11 +28,6 @@ public class CatalogRepository(CatalogContext context) : ICatalogRepository
     public async Task UpdateAsync()
     {
         await SaveChangesAsync();
-    }
-
-    public async Task<IEnumerable<ProductCatalogBrand>> GetAllProductsCatalogBranchAsync()
-    {
-        return await _context.CatalogBrands.AsNoTracking().ToListAsync();
     }
 
     private async Task<bool> SaveChangesAsync()
