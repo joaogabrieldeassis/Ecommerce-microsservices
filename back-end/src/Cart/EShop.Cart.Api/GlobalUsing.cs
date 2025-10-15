@@ -1,0 +1,13 @@
+﻿global using Microsoft.AspNetCore.Mvc;
+global using EShop.Cart.Api.Models;
+global using Microsoft.EntityFrameworkCore;
+global using EShop.Cart.Api.Data;
+global using EShop.Shared.Interfaces;
+global using EShop.Shared.Notifications;
+global using MediatR;
+global using EShop.Shared.Entities;
+global using EShop.Cart.Api.Extensions;
+global using FluentValidation;
+global using FluentValidation.Results;
+global using EShop.Cart.Api.Application.Commands;
+global using EShop.Cart.Api.Application.Commands.Handlers;

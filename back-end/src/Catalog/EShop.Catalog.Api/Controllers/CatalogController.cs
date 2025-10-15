@@ -34,7 +34,8 @@ public class CatalogController(ICatalogRepository catalogRepository) : Controlle
         var productCatalog = new ProductCatalog(productCatalogDto.Name,
                                                 productCatalogDto.Description,
                                                 productCatalogDto.Price,
-                                                productCatalogDto.PictureUri);
+                                                productCatalogDto.PictureUri,
+                                                productCatalogDto.Quantity);
 
         await _catalogRepository.AddAsync(productCatalog);
 

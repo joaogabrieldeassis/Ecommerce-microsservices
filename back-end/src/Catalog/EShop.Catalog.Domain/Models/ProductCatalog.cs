@@ -20,13 +20,12 @@ public class ProductCatalog : Entity
     public string PictureUri { get; private set; } = string.Empty;
     public int QuantityInStock { get; private set; }
 
-    public void Update(string name, string description, decimal price, string pictureUri, int quantity)
+    public void Update(string name, string description, decimal price, string pictureUri)
     {
         Name = name;
         Description = description;
         Price = price;
         PictureUri = pictureUri;
-        QuantityInStock = quantity;
     }
 
     public void AddOneToStock()
