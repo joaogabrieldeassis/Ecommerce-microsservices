@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 18
-VisualStudioVersion = 18.0.11018.127
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36603.0 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
@@ -32,6 +32,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{4E04F8A9-F822-4FDE-B80E-A3B9297386F3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EShop.Shared", "Shared\EShop.Shared\EShop.Shared.csproj", "{F6A3F265-EBEF-450F-89E2-C7274CBBCB7C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{FD5B1E1F-27E4-4700-87F6-8182F6E8E807}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EShop.Identity", "Identity\EShop.Identity\EShop.Identity.csproj", "{2DB8DA4A-761A-4904-B047-F82CF42CADC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EShop.Shared.Api", "Shared\EShop.Shared.Api\EShop.Shared.Api.csproj", "{24AF08D9-A5D4-4B25-ABE1-BECA044D8F26}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +81,14 @@ Global
 		{F6A3F265-EBEF-450F-89E2-C7274CBBCB7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6A3F265-EBEF-450F-89E2-C7274CBBCB7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6A3F265-EBEF-450F-89E2-C7274CBBCB7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DB8DA4A-761A-4904-B047-F82CF42CADC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DB8DA4A-761A-4904-B047-F82CF42CADC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DB8DA4A-761A-4904-B047-F82CF42CADC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DB8DA4A-761A-4904-B047-F82CF42CADC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24AF08D9-A5D4-4B25-ABE1-BECA044D8F26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24AF08D9-A5D4-4B25-ABE1-BECA044D8F26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24AF08D9-A5D4-4B25-ABE1-BECA044D8F26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24AF08D9-A5D4-4B25-ABE1-BECA044D8F26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,6 +107,9 @@ Global
 		{CA2CF224-8D6A-4DE4-9AC3-D50B724BEB18} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{D7F26B66-B732-4097-9F19-183D4D3C25E1} = {CA2CF224-8D6A-4DE4-9AC3-D50B724BEB18}
 		{F6A3F265-EBEF-450F-89E2-C7274CBBCB7C} = {4E04F8A9-F822-4FDE-B80E-A3B9297386F3}
+		{FD5B1E1F-27E4-4700-87F6-8182F6E8E807} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{2DB8DA4A-761A-4904-B047-F82CF42CADC5} = {FD5B1E1F-27E4-4700-87F6-8182F6E8E807}
+		{24AF08D9-A5D4-4B25-ABE1-BECA044D8F26} = {4E04F8A9-F822-4FDE-B80E-A3B9297386F3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {343B0C1C-1ED5-4796-B3B0-691F394C712F}
