@@ -18,7 +18,7 @@ public abstract class MainController(INotifier notifier) : ControllerBase
         return !_notifier.HasNotification();
     }
 
-    protected ActionResult CustomResponse(object result = null)
+    protected ActionResult CustomResponse(object? result = null)
     {
         if (IsOperationValid())
         {
