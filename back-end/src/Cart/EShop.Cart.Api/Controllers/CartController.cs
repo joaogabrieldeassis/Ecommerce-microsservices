@@ -21,14 +21,13 @@ public class CartController(INotifier notifier,
         if (!ModelState.IsValid) return CustomResponse(ModelState);
         var cart = await _mediator.Send(new GetCartUserCommand(GetUserId()));
 
-        if(cart == null || !cart.HasProduct())
+        if(cart == null)
         {
-            await _mediator.Send(new CreateCartCommand(GetUserId()));
+            await _mediator.Send(new CreateCartCommand(GetUserId(), command.ProductId));
             return CustomResponse();
         }
 
         await _mediator.Send(command);
-
         return CustomResponse();
     }
     

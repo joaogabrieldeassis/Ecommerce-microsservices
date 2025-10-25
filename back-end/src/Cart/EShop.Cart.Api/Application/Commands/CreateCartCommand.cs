@@ -1,3 +1,3 @@
 ﻿namespace EShop.Cart.Api.Application.Commands;
 
-public record CreateCartCommand(Guid ProductId) : IRequest;
+public record CreateCartCommand(Guid UserId, Guid ProductId) : IRequest;
