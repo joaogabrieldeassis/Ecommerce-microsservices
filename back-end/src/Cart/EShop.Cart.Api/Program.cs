@@ -1,26 +1,20 @@
+using EShop.Shared.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddModules();
+builder.Services.AddModules(builder.Configuration);
 builder.Services.AddControllers();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-if (!app.Environment.IsDevelopment())
-{
-    app.UseHttpsRedirection();
-}
+app.SwaggerShared();
+app.UseHttpsRedirection();
 
-app.UseSwagger();
-app.UseSwaggerUI();
+app.CorsShared();
 
-app.CreateDataForTest();
-
-app.UseCors(x => x.AllowAnyOrigin()
-                  .AllowAnyMethod()
-                  .AllowAnyHeader());
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
 app.Run();

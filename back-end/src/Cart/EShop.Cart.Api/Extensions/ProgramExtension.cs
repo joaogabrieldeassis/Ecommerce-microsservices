@@ -1,11 +1,16 @@
-﻿namespace EShop.Cart.Api.Extensions;
+﻿using EShop.Cart.Api.Application.Queries;
+using EShop.Cart.Api.Application.Queries.Commands;
+using EShop.Shared.Extensions;
+
+namespace EShop.Cart.Api.Extensions;
 
 public static class ProgramExtension
 {
-    public static IServiceCollection AddModules(this IServiceCollection services)
+    public static IServiceCollection AddModules(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddAuthenticationShared(configuration["Authentication:Key"]!);
         services.AddMediator();
-        services.AddDbContext();
+        services.AddDbContext(configuration.GetConnectionString("DefaultConnection")!);
         services.ResolveDepenciInjection();
 
         return services;
@@ -21,11 +26,8 @@ public static class ProgramExtension
         return services;
     }
 
-    private static IServiceCollection AddDbContext(this IServiceCollection services)
+    private static IServiceCollection AddDbContext(this IServiceCollection services, string connectionString)
     {
-        var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING") 
-                               ?? throw new InvalidOperationException("The connection string was not found in the environment variables");
-
         services.AddDbContext<CartContext>(opt => opt.UseSqlServer(connectionString));
 
         return services;
@@ -36,7 +38,9 @@ public static class ProgramExtension
         services.AddScoped<IRequestHandler<AddProductInCartCommand>, AddProductInCartCommandHandler>();
         services.AddScoped<IRequestHandler<CreateCartCommand>, CreateCartCommandHandler>();
         services.AddScoped<IRequestHandler<RemoveProductCartCommand>, RemoveProductCartCommandHandler>();
+        services.AddScoped<IRequestHandler<GetCartUserCommand, Models.Cart?>, GetCartUserQuerie>();
         services.AddScoped<INotifier, Notifier>();
+        services.AddHttpContextAccessor();
 
         return services;
     }

@@ -23,6 +23,11 @@ public class Cart : Entity
         Products.Remove(product);
     }
 
+    public bool HasProduct()
+    {
+        return Products != null && Products.Count > 0;
+    }
+
     public void Delete()
     {
         IsDeleted = true;
