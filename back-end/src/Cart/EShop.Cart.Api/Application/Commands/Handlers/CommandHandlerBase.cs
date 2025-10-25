@@ -1,7 +1,10 @@
-﻿namespace EShop.Cart.Api.Application.Commands.Handlers;
+﻿using System.Security.Claims;
 
-public class CommandHandlerBase(INotifier notificador)
+namespace EShop.Cart.Api.Application.Commands.Handlers;
+
+public class CommandHandlerBase(INotifier notificador, IHttpContextAccessor httpContext)
 {
+    private readonly IHttpContextAccessor _httpContextAccessor = httpContext;
     private readonly INotifier _notifier = notificador;
 
     protected bool TheEntityIsValid<TV, TE>(TV validacao, TE entidade) where TV : AbstractValidator<TE> where TE : Entity
@@ -27,5 +30,10 @@ public class CommandHandlerBase(INotifier notificador)
     protected void Notify(string menssagem)
     {
         _notifier.Handle(new Notification(menssagem));
+    }
+
+    protected Guid GetUserId()
+    {
+        return Guid.Parse(_httpContextAccessor.HttpContext!.User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
     }
 }

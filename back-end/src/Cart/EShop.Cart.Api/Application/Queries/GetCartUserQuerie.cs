@@ -2,7 +2,8 @@
 
 namespace EShop.Cart.Api.Application.Queries;
 
-public class GetCartUserQuerie(CartContext context) : IRequestHandler<GetCartUserCommand, Models.Cart?>
+public class GetCartUserQuerie(CartContext context,
+                               IHttpContextAccessor httpContext) : CommandQuerieBase(httpContext), IRequestHandler<GetCartUserCommand, Models.Cart?>
 {
     private readonly CartContext _context = context;
 
@@ -11,6 +12,6 @@ public class GetCartUserQuerie(CartContext context) : IRequestHandler<GetCartUse
         return await _context.Carts
                              .Include(x => x.Products)
                              .AsNoTracking()
-                             .FirstOrDefaultAsync(c => c.UserId == request.UserId && !c.IsDeleted, cancellationToken);
+                             .FirstOrDefaultAsync(c => c.UserId == GetUserId() && !c.IsDeleted, cancellationToken);
     }
 }

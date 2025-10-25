@@ -19,20 +19,15 @@ public class CartController(INotifier notifier,
     public async Task<ActionResult> AddItemCart(AddProductInCartCommand command)
     {
         if (!ModelState.IsValid) return CustomResponse(ModelState);
-        var cart = await _mediator.Send(new GetCartUserCommand(GetUserId()));
+        var cart = await _mediator.Send(new GetCartUserCommand());
 
         if(cart == null)
         {
-            await _mediator.Send(new CreateCartCommand(GetUserId(), command.ProductId));
+            await _mediator.Send(new CreateCartCommand(command.ProductId));
             return CustomResponse();
         }
 
         await _mediator.Send(command);
         return CustomResponse();
-    }
-    
-    private Guid GetUserId()
-    {
-        return Guid.Parse(_httpContextAccessor.HttpContext!.User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
     }
 }

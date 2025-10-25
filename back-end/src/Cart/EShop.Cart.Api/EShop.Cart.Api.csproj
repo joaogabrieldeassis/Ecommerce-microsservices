@@ -7,12 +7,18 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Application\Behaviors\**" />
+	  <Content Remove="Application\Behaviors\**" />
+	  <EmbeddedResource Remove="Application\Behaviors\**" />
+	  <None Remove="Application\Behaviors\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\..\Shared\EShop.Shared.Api\EShop.Shared.Api.csproj" />
 		<ProjectReference Include="..\..\Shared\EShop.Shared\EShop.Shared.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Application\Behaviors\" />
 		<Folder Include="IntegrationEvents\Handlers\" />
 	</ItemGroup>
 

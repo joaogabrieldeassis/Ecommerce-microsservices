@@ -11,8 +11,8 @@ public class CartContext(DbContextOptions<CartContext> options) : DbContext(opti
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(CartContext).Assembly);
     }
 
-    public async Task<bool> CommitAsync()
+    public async Task<bool> CommitAsync(CancellationToken cancellationToken)
     {
-        return await base.SaveChangesAsync() > 0;
+        return await base.SaveChangesAsync(cancellationToken) > 0;
     }
 }
