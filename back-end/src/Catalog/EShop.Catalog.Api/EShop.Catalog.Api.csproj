@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Shared\EShop.Shared.EventBus\EShop.Shared.EventBus.csproj" />
     <ProjectReference Include="..\EShop.Catalog.Infrestructure\EShop.Catalog.Infrestructure.csproj" />
   </ItemGroup>
 

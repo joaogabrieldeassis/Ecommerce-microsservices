@@ -3,12 +3,12 @@ using EShop.Catalog.Api.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
-builder.AddModules();
+builder.AddModules(builder.Configuration);
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-Extension.ApplyMigrations(app);
+ProgramExtension.ApplyMigrations(app);
 
 if (app.Environment.IsDevelopment())
 {
