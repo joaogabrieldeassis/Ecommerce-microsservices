@@ -1,1 +1,1 @@
-dotnet ef database update --project C:\StudySpace\eShop-microsservices\back-end\src\Catalog\EShop.Catalog.Infrestructure\EShop.Catalog.Infrestructure.csproj -s C:\StudySpace\eShop-microsservices\back-end\src\Catalog\EShop.Catalog.Api\EShop.Catalog.Api.csproj --verbose
+dotnet ef database update --project C:\GitHub\Ecommerce-microsservices\back-end\src\Catalog\EShop.Catalog.Infrestructure\EShop.Catalog.Infrestructure.csproj -s C:\GitHub\Ecommerce-microsservices\back-end\src\Catalog\EShop.Catalog.Api\EShop.Catalog.Api.csproj  --verbose

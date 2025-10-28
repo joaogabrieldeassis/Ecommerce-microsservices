@@ -1,16 +1,19 @@
 ﻿using EShop.Catalog.Api.Dtos.Requests;
 using EShop.Catalog.Api.Dtos.Responses;
+using EShop.Catalog.Api.IntegrationsEvent;
 using EShop.Catalog.Domain.Interfaces;
 using EShop.Catalog.Domain.Models;
+using EShop.Shared.EventBus.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EShop.Catalog.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class CatalogController(ICatalogRepository catalogRepository) : ControllerBase
+public class CatalogController(ICatalogRepository catalogRepository, IMessageBus eventBus) : ControllerBase
 {
     private readonly ICatalogRepository _catalogRepository = catalogRepository;
+    private readonly IMessageBus _eventBus = eventBus;
 
     [HttpGet]
     public async Task<IActionResult> GetItemsAsync()
@@ -38,6 +41,11 @@ public class CatalogController(ICatalogRepository catalogRepository) : Controlle
                                                 productCatalogDto.Quantity);
 
         await _catalogRepository.AddAsync(productCatalog);
+
+        var @event = new ProductCreatedIntegrationEvent(productCatalog.Name,
+                                                        productCatalog.QuantityInStock,
+                                                        productCatalog.Price);
+        await _eventBus.PublishAsync(@event);
 
         return Ok(productCatalog);
     }

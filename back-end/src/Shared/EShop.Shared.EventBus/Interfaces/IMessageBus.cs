@@ -5,7 +5,7 @@ namespace EShop.Shared.EventBus.Interfaces;
 
 public interface IMessageBus 
 {
-    Task Publish(IntegrationEvent @event);
+    Task PublishAsync(IntegrationEvent @event);
 
-    Task Subscribe<T, TH>() where T : IntegrationEvent  where TH : IIntegrationEventHandler<T>; 
+    Task SubscribeAsync<T, TH>() where T : IntegrationEvent  where TH : IIntegrationEventHandler<T>; 
 }

@@ -1,5 +1,4 @@
-﻿using EasyNetQ;
-using EShop.Catalog.Domain.Interfaces;
+﻿using EShop.Catalog.Domain.Interfaces;
 using EShop.Catalog.Infrestructure.Context;
 using EShop.Catalog.Infrestructure.Repositories;
 using EShop.Shared.EventBus;
@@ -39,17 +38,15 @@ public static class ProgramExtension
 
     private static void AddDependeciInjection(this WebApplicationBuilder builder, IConfiguration configuration)
     {
-        var subscriptionClientName = configuration["SubscriptionClientName"]!;
-
         builder.Services.AddScoped<ICatalogRepository, CatalogRepository>();
 
+        var subscriptionClientName = configuration["SubscriptionClientName"]!;
         builder.Services.AddSingleton<IMessageBus, EventBusRabbitMQ>(sp =>
         {
-            var logger = sp.GetRequiredService<ILogger<EventBusRabbitMQ>>();
             var eventBusSubcriptionsManager = sp.GetRequiredService<IEventBusSubscriptionsManager>();
-
-            return new EventBusRabbitMQ(eventBusSubcriptionsManager, subscriptionClientName);
+            return new EventBusRabbitMQ(eventBusSubcriptionsManager, subscriptionClientName, sp);
         });
+
         builder.Services.AddSingleton<IEventBusSubscriptionsManager, InMemoryEventBusSubscriptionsManager>();
     }
 

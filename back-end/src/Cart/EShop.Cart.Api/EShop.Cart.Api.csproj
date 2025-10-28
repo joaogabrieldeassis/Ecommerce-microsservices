@@ -15,11 +15,8 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\Shared\EShop.Shared.Api\EShop.Shared.Api.csproj" />
+		<ProjectReference Include="..\..\Shared\EShop.Shared.EventBus\EShop.Shared.EventBus.csproj" />
 		<ProjectReference Include="..\..\Shared\EShop.Shared\EShop.Shared.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="IntegrationEvents\Handlers\" />
 	</ItemGroup>
 
 	<ItemGroup>
