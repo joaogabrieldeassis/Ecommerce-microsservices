@@ -3,7 +3,8 @@
 public class Product : Entity
 {
     public Product() { }
-    public Product(string name, int quantityInStock, decimal price)
+    public Product(Guid id, string name, int quantityInStock, decimal price)
+        : base(id)
     {
         Name = name;
         QuantityInStock = quantityInStock;

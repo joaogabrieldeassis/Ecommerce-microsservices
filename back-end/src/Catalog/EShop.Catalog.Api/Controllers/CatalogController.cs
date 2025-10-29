@@ -42,7 +42,8 @@ public class CatalogController(ICatalogRepository catalogRepository, IMessageBus
 
         await _catalogRepository.AddAsync(productCatalog);
 
-        var @event = new ProductCreatedIntegrationEvent(productCatalog.Name,
+        var @event = new ProductCreatedIntegrationEvent(productCatalog.Id,
+                                                        productCatalog.Name,
                                                         productCatalog.QuantityInStock,
                                                         productCatalog.Price);
         await _eventBus.PublishAsync(@event);

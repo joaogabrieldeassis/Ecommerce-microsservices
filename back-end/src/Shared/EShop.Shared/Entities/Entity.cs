@@ -1,14 +1,8 @@
 ﻿namespace EShop.Shared.Entities;
 
-public class Entity
+public class Entity(Guid? id = null)
 {
-    public Entity()
-    {
-        Id = Guid.NewGuid();
-        CreateDate = DateTime.UtcNow;
-    }
-
-    public Guid Id { get; private set; }
-    public DateTime CreateDate { get; private set; }
+    public Guid Id { get; private set; } = id ?? Guid.NewGuid();
+    public DateTime CreateDate { get; private set; } = DateTime.UtcNow;
     public DateTime UpdateDate { get; protected set; }
 }

@@ -44,7 +44,7 @@ public static class ProgramExtension
         services.AddScoped<IRequestHandler<CreateCartCommand>, CreateCartCommandHandler>();
         services.AddScoped<IRequestHandler<RemoveProductCartCommand>, RemoveProductCartCommandHandler>();
         services.AddScoped<IRequestHandler<GetCartUserCommand, Models.Cart?>, GetCartUserQuerie>();
-        services.AddScoped<INotifier, Notifier>();       
+        services.AddScoped<INotifier, Notifier>();
 
         services.AddHttpContextAccessor();
 
@@ -80,8 +80,9 @@ public static class ProgramExtension
         {
             context.Products.AddRange(
             [
-                new Product("Camisa", 12, 99.9m),
-                new Product("Tênis", 3, 229.89m),
+                new Product(Guid.NewGuid(), "Camisa", 12, 99.9m),
+                new Product(Guid.NewGuid(),                                
+                 "Tênis", 3, 229.89m),
             ]);
 
             context.SaveChanges();
