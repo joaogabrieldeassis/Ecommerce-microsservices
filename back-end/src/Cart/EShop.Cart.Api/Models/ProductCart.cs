@@ -28,4 +28,11 @@ public class ProductCart : Entity
     {
         Quantity--;
     }
+
+    public void UpdateDetails(string name, int quantityInStock, decimal price)
+    {
+        Name = name;
+        QuantityInStock = quantityInStock;
+        Price = price;
+    }
 }

@@ -3,14 +3,18 @@ using EShop.Catalog.Api.Dtos.Responses;
 using EShop.Catalog.Api.IntegrationsEvent;
 using EShop.Catalog.Domain.Interfaces;
 using EShop.Catalog.Domain.Models;
+using EShop.Shared.Api.Controllers;
 using EShop.Shared.EventBus.Interfaces;
+using EShop.Shared.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EShop.Catalog.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class CatalogController(ICatalogRepository catalogRepository, IMessageBus eventBus) : ControllerBase
+public class CatalogController(ICatalogRepository catalogRepository,
+                               IMessageBus eventBus,
+                               INotifier notifier) : MainController(notifier)
 {
     private readonly ICatalogRepository _catalogRepository = catalogRepository;
     private readonly IMessageBus _eventBus = eventBus;
@@ -48,7 +52,7 @@ public class CatalogController(ICatalogRepository catalogRepository, IMessageBus
                                                         productCatalog.Price);
         await _eventBus.PublishAsync(@event);
 
-        return Ok(productCatalog);
+        return CustomResponse();
     }
 
     [HttpPut("{id:guid}")]
@@ -56,13 +60,45 @@ public class CatalogController(ICatalogRepository catalogRepository, IMessageBus
     {
         var productCatalog = await _catalogRepository.GetByIdAsync(id);
 
-        productCatalog?.Update(productCatalogDto.Name,
+        if (productCatalog is null)
+        {
+            NotifyError("Esse produto não existe.");
+            return CustomResponse();
+        }
+
+        productCatalog.Update(productCatalogDto.Name,
                                productCatalogDto.Description,
                                productCatalogDto.Price,
                                productCatalogDto.PictureUri);
 
         await _catalogRepository.UpdateAsync();
 
-        return Ok(productCatalog);
+        var @event = new ProductUpdatedIntegrationEvent(productCatalog!.Id,
+                                                        productCatalog.Name,
+                                                        productCatalog.QuantityInStock,
+                                                        productCatalog.Price);
+        await _eventBus.PublishAsync(@event);
+
+        return CustomResponse();
+    }
+
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> DeleteAsync(Guid id)
+    {
+        var productCatalog = await _catalogRepository.GetByIdAsync(id);
+
+        if (productCatalog is null)
+        {
+            NotifyError("Esse produto não existe.");
+            return CustomResponse();
+        }
+
+        await _catalogRepository.DeleteAsync(productCatalog);
+
+        var @event = new ProductDeletedIntegrationEvent(productCatalog!.Id);
+
+        await _eventBus.PublishAsync(@event);
+
+        return CustomResponse();
     }
 }

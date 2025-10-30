@@ -28,6 +28,13 @@ public class CatalogRepository(CatalogContext context) : ICatalogRepository
     public async Task UpdateAsync()
     {
         await SaveChangesAsync();
+    }    
+
+    public async Task DeleteAsync(ProductCatalog entity)
+    {
+        _context.CatalogItems.Remove(entity);
+
+        await SaveChangesAsync();
     }
 
     private async Task<bool> SaveChangesAsync()
@@ -35,5 +42,5 @@ public class CatalogRepository(CatalogContext context) : ICatalogRepository
         var result = await _context.SaveChangesAsync();
 
         return result > 0;
-    }    
+    }
 }

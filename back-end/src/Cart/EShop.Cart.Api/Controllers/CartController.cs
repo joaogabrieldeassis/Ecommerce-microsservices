@@ -1,7 +1,6 @@
 using EShop.Cart.Api.Application.Queries.Commands;
 using EShop.Shared.Api.Controllers;
 using Microsoft.AspNetCore.Authorization;
-using System.Security.Claims;
 
 namespace EShop.Cart.Api.Controllers;
 

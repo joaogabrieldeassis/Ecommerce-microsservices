@@ -6,7 +6,7 @@ public class Cart : Entity
     public Cart(Guid userId)
     {
         UserId = userId;
-        IsDeleted = true;
+        IsDeleted = false;
     }
 
     public Guid UserId { get; private set; }
