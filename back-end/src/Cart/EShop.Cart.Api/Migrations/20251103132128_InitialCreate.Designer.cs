@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EShop.Cart.Api.Migrations
 {
     [DbContext(typeof(CartContext))]
-    [Migration("20251025162125_InitialCreate")]
+    [Migration("20251103132128_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -36,6 +36,9 @@ namespace EShop.Cart.Api.Migrations
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<decimal>("TotalValue")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
@@ -102,6 +105,9 @@ namespace EShop.Cart.Api.Migrations
 
                     b.Property<int>("QuantityInStock")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("TotalValue")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");

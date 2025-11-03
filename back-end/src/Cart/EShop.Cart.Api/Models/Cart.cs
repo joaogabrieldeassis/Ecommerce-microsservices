@@ -12,15 +12,23 @@ public class Cart : Entity
     public Guid UserId { get; private set; }
     public bool IsDeleted { get; private set; }
     public List<ProductCart> Products { get; private set; } = [];
+    public decimal TotalValue { get; private set; }
 
     public void AddProduct(ProductCart product)
     {
         Products.Add(product);
+        UpdateTotalValue();
     }
 
     public void RemoveProduct(ProductCart product)
     {
         Products.Remove(product);
+        UpdateTotalValue();
+    }
+
+    private void UpdateTotalValue()
+    {
+        TotalValue = Products.Sum(p => p.TotalValue);
     }
 
     public void Delete()

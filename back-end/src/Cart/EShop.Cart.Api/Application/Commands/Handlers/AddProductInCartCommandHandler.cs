@@ -23,6 +23,7 @@ public class AddProductInCartCommandHandler(INotifier notifier,
 
         var productCart = new ProductCart(product.Id, product.Name, product.QuantityInStock, product.Price);
         cart.AddProduct(productCart);
+        _context.ProductsCarts.Add(productCart);
 
         await _context.CommitAsync(cancellationToken);
     }

@@ -1,21 +1,20 @@
 using EShop.Catalog.Api.Extensions;
+using EShop.Shared.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.AddModules(builder.Configuration);
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerShared();
 
 var app = builder.Build();
 
 ProgramExtension.ApplyMigrations(app);
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.SwaggerShared();
+app.CorsShared();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

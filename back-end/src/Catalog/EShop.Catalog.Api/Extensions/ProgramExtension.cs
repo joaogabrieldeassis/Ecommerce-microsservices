@@ -3,6 +3,7 @@ using EShop.Catalog.Infrestructure.Context;
 using EShop.Catalog.Infrestructure.Repositories;
 using EShop.Shared.EventBus;
 using EShop.Shared.EventBus.Interfaces;
+using EShop.Shared.Extensions;
 using EShop.Shared.Interfaces;
 using EShop.Shared.Notifications;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,7 @@ public static class ProgramExtension
 {
     public static void AddModules(this WebApplicationBuilder builder, IConfiguration configuration)
     {
+        builder.Services.AddAuthenticationShared(configuration["Authentication:Key"]!);
         builder.AddDbContext(configuration);
         builder.AddDependeciInjection(configuration);
     }

@@ -34,6 +34,9 @@ namespace EShop.Cart.Api.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<decimal>("TotalValue")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
@@ -99,6 +102,9 @@ namespace EShop.Cart.Api.Migrations
 
                     b.Property<int>("QuantityInStock")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("TotalValue")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
