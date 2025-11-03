@@ -9,11 +9,11 @@ namespace EShop.Shared.Extensions;
 
 public static class ProgramExtensions
 {
-    public static IServiceCollection AddSwaggerShared(this IServiceCollection services)
+    public static IServiceCollection AddSwaggerShared(this IServiceCollection services, string apiName)
     {
         services.AddSwaggerGen(c =>
         {
-            c.SwaggerDoc("v1", new OpenApiInfo { Title = "Cart API", Version = "v1" });
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = $"{apiName} API", Version = "v1" });
 
             c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
             {

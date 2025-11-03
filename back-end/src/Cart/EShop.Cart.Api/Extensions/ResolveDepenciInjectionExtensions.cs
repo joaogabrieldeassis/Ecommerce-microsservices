@@ -1,25 +1,23 @@
-﻿using EShop.Cart.Api.Application.IntegrationsEvents.Events;
-using EShop.Cart.Api.Application.IntegrationsEvents.Handlers;
-using EShop.Cart.Api.Application.Queries;
-using EShop.Cart.Api.Application.Queries.Commands;
-using EShop.Shared.EventBus;
-using EShop.Shared.EventBus.Abstraction;
-using EShop.Shared.EventBus.Interfaces;
-
-namespace EShop.Cart.Api.Extensions;
+﻿namespace EShop.Cart.Api.Extensions;
 
 public static class ResolveDepenciInjectionExtensions
 {
 
     public static IServiceCollection ResolveDepenciInjection(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddScoped<INotifier, Notifier>();
-
         services.AddHttpContextAccessor();
-
+        services.ResolveDependiciInjection();
         services.ResolveCommands();
         services.ResolveIntegrationsEnvents(configuration["SubscriptionClientName"]!);
         services.AddDbContext(configuration.GetConnectionString("DefaultConnection")!);
+
+        return services;
+    }
+
+    private static IServiceCollection ResolveDependiciInjection(this IServiceCollection services)
+    {
+        services.AddScoped<INotifier, Notifier>();
+        services.AddScoped<ICartQuerieApplication, CartQuerieApplication>();
 
         return services;
     }
@@ -29,8 +27,6 @@ public static class ResolveDepenciInjectionExtensions
         services.AddScoped<IRequestHandler<AddProductInCartCommand>, AddProductInCartCommandHandler>();
         services.AddScoped<IRequestHandler<CreateCartCommand>, CreateCartCommandHandler>();
         services.AddScoped<IRequestHandler<RemoveProductCartCommand>, RemoveProductCartCommandHandler>();
-        services.AddScoped<IRequestHandler<GetCartUserCommand, Models.Cart?>, GetCartUserQuerie>();
-        services.AddScoped<INotifier, Notifier>();
 
         return services;
     }

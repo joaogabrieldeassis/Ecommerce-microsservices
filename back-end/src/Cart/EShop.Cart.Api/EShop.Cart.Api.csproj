@@ -7,21 +7,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Application\Behaviors\**" />
-	  <Content Remove="Application\Behaviors\**" />
-	  <EmbeddedResource Remove="Application\Behaviors\**" />
-	  <None Remove="Application\Behaviors\**" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<ProjectReference Include="..\..\Shared\EShop.Shared.Api\EShop.Shared.Api.csproj" />
 		<ProjectReference Include="..\..\Shared\EShop.Shared.EventBus\EShop.Shared.EventBus.csproj" />
 		<ProjectReference Include="..\..\Shared\EShop.Shared\EShop.Shared.csproj" />
+		<ProjectReference Include="..\EShop.Cart.Application\EShop.Cart.Application.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="FluentValidation" Version="12.0.0" />
-		<PackageReference Include="MediatR" Version="12.1.1" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.10" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.10">
 			<PrivateAssets>all</PrivateAssets>

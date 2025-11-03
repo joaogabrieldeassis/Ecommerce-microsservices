@@ -1,4 +1,3 @@
-using EShop.Shared.Extensions;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +10,7 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
     });
 
-builder.Services.AddSwaggerShared();
+builder.Services.AddSwaggerShared(apiName: "Cart");
 
 var app = builder.Build();
 

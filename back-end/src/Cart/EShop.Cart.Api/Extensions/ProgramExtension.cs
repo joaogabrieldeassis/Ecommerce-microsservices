@@ -1,9 +1,4 @@
-﻿using EShop.Cart.Api.Application.IntegrationsEvents.Events;
-using EShop.Cart.Api.Application.IntegrationsEvents.Handlers;
-using EShop.Shared.EventBus.Interfaces;
-using EShop.Shared.Extensions;
-
-namespace EShop.Cart.Api.Extensions;
+﻿namespace EShop.Cart.Api.Extensions;
 
 public static class ProgramExtension
 {

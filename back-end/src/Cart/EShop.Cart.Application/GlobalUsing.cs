@@ -1,0 +1,14 @@
+﻿global using MediatR;
+global using EShop.Cart.Infraestructure.Data;
+global using EShop.Shared.Interfaces;
+global using Microsoft.AspNetCore.Http;
+global using EShop.Cart.Domain.AggregatesModel.CartAggregate;
+global using Microsoft.EntityFrameworkCore;
+global using EShop.Shared.Entities;
+global using FluentValidation;
+global using FluentValidation.Results;
+global using System.Security.Claims;
+global using EShop.Shared.Notifications;
+global using EShop.Shared.EventBus.Events;
+global using EShop.Cart.Application.IntegrationsEvents.Events;
+global using EShop.Shared.EventBus.Abstraction;

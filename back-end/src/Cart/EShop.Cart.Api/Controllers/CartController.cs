@@ -1,30 +1,29 @@
-using EShop.Cart.Api.Application.Queries.Commands;
-using EShop.Shared.Api.Controllers;
-using Microsoft.AspNetCore.Authorization;
-
+using EShop.Cart.Application.Commands;
 namespace EShop.Cart.Api.Controllers;
 
 [Route("api/[controller]")]
 [Authorize]
 public class CartController(INotifier notifier,
-                            IMediator mediator) : MainController(notifier)
+                            IMediator mediator,
+                            ICartQuerieApplication cartQuerie) : MainController(notifier)
 {
     private readonly IMediator _mediator = mediator;
+    private readonly ICartQuerieApplication _cartQuerie = cartQuerie;
 
     [HttpGet("get-cart")]
-    public async Task<ActionResult> GetCartAsync()
+    public async Task<ActionResult> GetCartAsync(CancellationToken cancellationToken)
     {
         if (!ModelState.IsValid) return CustomResponse(ModelState);
-        var cart = await _mediator.Send(new GetCartUserCommand());
+        var cart = await _cartQuerie.GetCartUserAsync(cancellationToken);
 
-        return CustomResponse(cart);
+        return Ok(cart);
     }
 
     [HttpPost("add-item-cart")]
-    public async Task<ActionResult> AddItemCartAsync(AddProductInCartCommand command)
+    public async Task<ActionResult> AddItemCartAsync(AddProductInCartCommand command, CancellationToken cancellationToken)
     {
         if (!ModelState.IsValid) return CustomResponse(ModelState);
-        var cart = await _mediator.Send(new GetCartUserCommand());
+        var cart = await _cartQuerie.GetCartUserAsync(cancellationToken);
 
         if (cart == null)
         {
@@ -32,7 +31,7 @@ public class CartController(INotifier notifier,
             return CustomResponse();
         }
 
-        await _mediator.Send(command);
+        await _mediator.Send(command, cancellationToken);
         return CustomResponse();
     }
 

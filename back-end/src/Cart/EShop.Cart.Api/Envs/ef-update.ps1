@@ -1,0 +1,1 @@
+dotnet ef database update --project C:\GitHub\Ecommerce-microsservices\back-end\src\Cart\EShop.Cart.Infraestructure.Data\EShop.Cart.Infraestructure.Data.csproj -s C:\GitHub\Ecommerce-microsservices\back-end\src\Cart\EShop.Cart.Api\EShop.Cart.Api.csproj --verbose
