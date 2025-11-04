@@ -1,4 +1,3 @@
-using EShop.Cart.Application.Commands;
 namespace EShop.Cart.Api.Controllers;
 
 [Route("api/[controller]")]
@@ -27,12 +26,12 @@ public class CartController(INotifier notifier,
 
         if (cart == null)
         {
-            await _mediator.Send(new CreateCartCommand(command.ProductId));
-            return CustomResponse();
+            await _mediator.Send(new CreateCartCommand(command.ProductId), cancellationToken);
+            return CustomResponse(await _cartQuerie.GetCartUserAsync(cancellationToken));
         }
 
         await _mediator.Send(command, cancellationToken);
-        return CustomResponse();
+        return CustomResponse(await _cartQuerie.GetCartUserAsync(cancellationToken));
     }
 
     [HttpPut("remove-item-cart")]
@@ -42,6 +41,24 @@ public class CartController(INotifier notifier,
 
         await _mediator.Send(command);
 
+        return CustomResponse();
+    }
+
+    [HttpPost("increase-item-cart")]
+    public async Task<ActionResult> IncreaseQuantityProductCartCommandAsync(IncreaseQuantityProductCartCommand command, CancellationToken cancellationToken)
+    {
+        if (!ModelState.IsValid) return CustomResponse(ModelState);
+
+        await _mediator.Send(command, cancellationToken);
+        return CustomResponse();
+    }
+
+    [HttpPost("decrease-item-cart")]
+    public async Task<ActionResult> DecreaseQuantityProductCartCommandAsync(DecreaseQuantityProductCartCommand command, CancellationToken cancellationToken)
+    {
+        if (!ModelState.IsValid) return CustomResponse(ModelState);
+
+        await _mediator.Send(command, cancellationToken);
         return CustomResponse();
     }
 }

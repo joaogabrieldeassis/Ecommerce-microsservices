@@ -12,6 +12,12 @@ public class RemoveProductCartCommandHandler(INotifier notifier,
                                  .Include(c => c.Products)
                                  .FirstAsync(c => c.UserId == GetUserId() && !c.IsDeleted, cancellationToken);
 
+        if(!cart.Products.Any(x=>x.ProductId == request.ProductId))
+        {
+            Notify("Esse produto não se encontra no carrinho");
+            return;
+        }
+
         var productCart = cart.Products.FirstOrDefault(p => p.ProductId == request.ProductId)!;
         cart.RemoveProduct(productCart);
         _context.ProductsCarts.Remove(productCart);

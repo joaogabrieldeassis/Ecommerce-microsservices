@@ -1,3 +1,3 @@
 ﻿namespace EShop.Cart.Application.Commands;
 
-public record DecreaseQuantityProductCartCommand(Guid ProductId) : IRequest;
+public record DecreaseQuantityProductCartCommand(Guid ProductId) : IRequest<Domain.AggregatesModel.CartAggregate.Cart>;

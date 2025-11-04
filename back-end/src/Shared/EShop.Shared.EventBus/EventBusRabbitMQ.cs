@@ -43,10 +43,10 @@ public class EventBusRabbitMQ(IEventBusSubscriptionsManager subsManager, string 
             await channel.ExchangeDeclareAsync(exchange: BROKER_NAME, type: "direct", durable: true);
 
             await channel.QueueDeclareAsync(queue: _queueName,
-                                           durable: true,
-                                           exclusive: false,
-                                           autoDelete: false,
-                                           arguments: null);
+                                            durable: true,
+                                            exclusive: false,
+                                            autoDelete: false,
+                                            arguments: null);
 
             await channel.QueueBindAsync(queue: _queueName, exchange: BROKER_NAME, routingKey: eventName);
         }

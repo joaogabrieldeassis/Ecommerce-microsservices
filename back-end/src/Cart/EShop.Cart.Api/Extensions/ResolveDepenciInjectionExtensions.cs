@@ -27,6 +27,9 @@ public static class ResolveDepenciInjectionExtensions
         services.AddScoped<IRequestHandler<AddProductInCartCommand>, AddProductInCartCommandHandler>();
         services.AddScoped<IRequestHandler<CreateCartCommand>, CreateCartCommandHandler>();
         services.AddScoped<IRequestHandler<RemoveProductCartCommand>, RemoveProductCartCommandHandler>();
+        services.AddScoped<IRequestHandler<DecreaseQuantityProductCartCommand, Domain.AggregatesModel.CartAggregate.Cart>, DecreaseQuantityProductCartCommandHandler>();
+        services.AddScoped<IRequestHandler<IncreaseQuantityProductCartCommand, Domain.AggregatesModel.CartAggregate.Cart>, IncreaseQuantityProductCartCommandHandler>();
+
 
         return services;
     }

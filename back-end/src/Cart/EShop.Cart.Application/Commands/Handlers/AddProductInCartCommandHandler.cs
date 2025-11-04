@@ -21,6 +21,12 @@ public class AddProductInCartCommandHandler(INotifier notifier,
             return;
         }
 
+        if (cart.Products.Any(x=>x.ProductId == request.ProductId))
+        {
+            Notify("Esse produto Já está adicionado no carrinho.");
+            return;
+        }
+
         var productCart = new ProductCart(product.Id, product.Name, product.QuantityInStock, product.Price);
         cart.AddProduct(productCart);
         _context.ProductsCarts.Add(productCart);

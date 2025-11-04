@@ -1,8 +1,9 @@
 ﻿using EShop.Shared.Entities;
+using EShop.Shared.Interfaces;
 
 namespace EShop.Cart.Domain.AggregatesModel.CartAggregate;
 
-public class Cart : Entity
+public class Cart : Entity, IAggregateRoot
 {
     public Cart() { }
     public Cart(Guid userId)
@@ -25,6 +26,22 @@ public class Cart : Entity
     public void RemoveProduct(ProductCart product)
     {
         Products.Remove(product);
+        UpdateTotalValue();
+    }
+
+    public void IncreaseQuantityProduct(Guid productId)
+    {
+        var product = Products.FirstOrDefault(p => p.ProductId == productId);
+        product!.IncreaseQuantity();
+
+        UpdateTotalValue();
+    }
+
+    public void DecreaseQuantityProduct(Guid productId)
+    {
+        var product = Products.FirstOrDefault(p => p.ProductId == productId);
+        product!.DecreaseQuantity();
+
         UpdateTotalValue();
     }
 
