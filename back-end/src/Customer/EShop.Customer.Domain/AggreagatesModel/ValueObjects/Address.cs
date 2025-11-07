@@ -31,4 +31,23 @@ public sealed class Address
     public string State { get; private set; } = string.Empty;           // Estado / Província
     public string Country { get; private set; } = string.Empty;            // País
     public int PostalCode { get; private set; }        // CEP / Código postal
+
+    public void Update(string street,
+                       string number,
+                       string complement,
+                       string neighborhood,
+                       string city,
+                       string state,
+                       string country,
+                       int postalCode)
+    {
+        Street = street;
+        Number = number;
+        Complement = complement;
+        Neighborhood = neighborhood;
+        City = city;
+        State = state;
+        Country = country;
+        PostalCode = postalCode;
+    }
 }

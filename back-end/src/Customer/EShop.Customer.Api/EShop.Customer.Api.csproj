@@ -6,4 +6,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\EShop.Shared.Api\EShop.Shared.Api.csproj" />
+    <ProjectReference Include="..\..\Shared\EShop.Shared.EventBus\EShop.Shared.EventBus.csproj" />
+    <ProjectReference Include="..\EShop.Customer.Application\EShop.Customer.Application.csproj" />
+  </ItemGroup>
+
 </Project>
